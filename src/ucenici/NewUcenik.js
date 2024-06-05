@@ -6,13 +6,11 @@ const NewUcenik = () => {
   const [ime, setIme] = useState("");
   const [prezime, setPrezime] = useState("");
   const [email, setEmail] = useState("");
-  const [razred, setRazred] = useState("");
-  const [odelenje, setOdelenje] = useState("");
+  const [korisnikId, setKorisnikId] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [showError, setShowError] = useState(false);
   const [imeErrorText, setNameErrorText] = useState("");
-  const [RazredErrorText, setFondErrorText] = useState("");
-  const [OdelenjeErrorText, setRazredIdErrorText] = useState("");
+  const [korisnikIdErrorText, setKorisnikIdErrorText] = useState("");
 
   const addNewUcenik = async () => {
     try {
@@ -27,8 +25,7 @@ const NewUcenik = () => {
           ime: ime,
           prezime: prezime,
           email: email,
-          razred: razred,
-          odelenje: odelenje,
+          korisnikId: korisnikId,
         }),
       });
 
@@ -39,8 +36,7 @@ const NewUcenik = () => {
         setIme("");
         setPrezime("");
         setEmail("");
-        setOdelenje("");
-        setRazred("");
+        setKorisnikId("");
       } else {
         console.log("Neuspeh slanja!");
       }
@@ -91,51 +87,47 @@ const NewUcenik = () => {
         />
         <TextField
           sx={{ width: "100%", marginBottom: 4 }}
-          id="razred"
-          label="Razred"
+          id="prezime"
+          label="Prezime"
           variant="outlined"
-          type="number"
-          value={razred}
-          onChange={(e) => {
-            const value = e.target.value;
-            if (value < 1 || value > 8) {
-              setShowError(true);
-              setRazredIdErrorText(
-                "Broj razreda ne sme da bude manji od 1 i veći od 8"
-              );
-            } else {
-              setShowError(false);
-              setRazredIdErrorText("");
-            }
-            setRazred(value);
-          }}
+          type="text"
+          value={prezime}
+          onChange={(e) => setPrezime(e.target.value)}
           required
-          error={showError}
-          helperText={RazredErrorText}
         />
         <TextField
           sx={{ width: "100%", marginBottom: 4 }}
-          id="odelenje"
-          label="Odelenje"
+          id="email"
+          label="Email"
+          variant="outlined"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <TextField
+          sx={{ width: "100%", marginBottom: 4 }}
+          id="korisnikId"
+          label="Korisnik ID"
           variant="outlined"
           type="number"
-          value={odelenje}
+          value={korisnikId}
           onChange={(e) => {
             const value = e.target.value;
-            if (value < 1 || value > 10) {
+            if (value === "" || value < 1) {
               setShowError(true);
-              setFondErrorText(
-                "Broj odelenja ne sme da bude manji od 1 i veći od 10"
+              setKorisnikIdErrorText(
+                "Polje ne može da bude prazno i mora biti veće od 0"
               );
             } else {
               setShowError(false);
-              setFondErrorText("");
+              setKorisnikIdErrorText("");
             }
-            setOdelenje(value);
+            setKorisnikId(value);
           }}
           required
           error={showError}
-          helperText={OdelenjeErrorText}
+          helperText={korisnikIdErrorText}
         />
         {showAlert && (
           <Alert
@@ -144,7 +136,7 @@ const NewUcenik = () => {
               setShowAlert(false);
             }}
           >
-            Uspešno dodat novi predmet!
+            Uspešno dodat novi ucenik!
           </Alert>
         )}
 

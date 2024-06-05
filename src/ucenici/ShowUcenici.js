@@ -41,7 +41,7 @@ const ShowUcenici = () => {
         <TextField
           size="small"
           id="outlined-search"
-          label="Pretraga po nazivu ucenika"
+          label="Pretraga po imenu ucenika"
           type="search"
           value={search}
           onChange={handleSearch}

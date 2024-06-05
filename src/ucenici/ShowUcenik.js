@@ -4,7 +4,7 @@ import {
   CardHeader,
   CardActions,
   Grid,
-  Typography,
+  //Typography,
   IconButton,
   Tooltip,
 } from "@mui/material";
@@ -72,12 +72,12 @@ const ShowSubject = ({ ucenik, onDeleteSubject }) => {
             justifyContent="space-between"
             sx={{ padding: "5px" }}
           >
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <Typography color="white">Ime</Typography>{" "}
             </Grid>
             <Grid item xs={6}>
               <Typography color="white">{ucenik.ime}</Typography>{" "}
-            </Grid>
+            </Grid> */}
           </Grid>
         </CardContent>
 

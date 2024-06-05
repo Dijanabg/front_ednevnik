@@ -6,8 +6,13 @@ import { checkUser } from "../login_logic";
 const EditUcenik = () => {
   const ucenik = useLoaderData();
   const [name, setName] = useState(ucenik.ime); // Ispravljeno ime atributa
-  const [razred, setRazred] = useState(ucenik.razred); // Ispravljeno ime atributa
-  const [odelenje, setOdelenje] = useState(ucenik.odelenje); // Ispravljeno ime atributa
+  const [prezime, setPrezime] = useState(ucenik.prezime); // Ispravljeno ime atributa
+  const [email, setEmail] = useState(ucenik.email); // Ispravljeno ime atributa
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const [showError, setShowError] = useState(false);
   const [helperText, setHelperText] = useState("");
@@ -26,8 +31,8 @@ const EditUcenik = () => {
           },
           body: JSON.stringify({
             ime: name, // Ispravljeno ime atributa
-            razred: razred,
-            odelenje: odelenje, // Ispravljeno ime atributa
+            prezime: prezime,
+            email: email, // Ispravljeno ime atributa
           }),
         }
       );
@@ -84,23 +89,21 @@ const EditUcenik = () => {
         />
         <TextField
           sx={{ width: "80%", marginBottom: 4 }}
-          id="fond"
-          label="Razred"
+          id="prezime"
+          label="Prezime"
           variant="outlined"
-          type="number"
-          value={razred}
+          type="text"
+          value={prezime}
           onChange={(e) => {
             const value = e.target.value;
-            if (value < 1 || value > 8) {
+            if (value === "") {
               setShowError(true);
-              setHelperText2(
-                "Broj časova ne sme da bude manji od 1 i veći od 8"
-              );
+              setHelperText("Polje ne može da bude prazno");
             } else {
               setShowError(false);
-              setHelperText2("");
+              setHelperText("");
             }
-            setRazred(value);
+            setPrezime(value);
           }}
           required
           error={showError}
@@ -108,27 +111,25 @@ const EditUcenik = () => {
         />
         <TextField
           sx={{ width: "80%", marginBottom: 4 }}
-          id="odelenje"
-          label="Odelenje"
+          id="email"
+          label="Email"
           variant="outlined"
-          type="number"
-          value={odelenje}
+          type="email"
+          value={email}
           onChange={(e) => {
             const value = e.target.value;
-            if (value < 1 || value > 10) {
+            if (!validateEmail(value)) {
               setShowError(true);
-              setHelperText2(
-                "Broj odelenja ne sme da bude manji od 1 i veći od 10"
-              );
+              setHelperText2("Unesite validnu email adresu");
             } else {
               setShowError(false);
-              setHelperText2("");
+              setHelperText("");
             }
-            setOdelenje(value);
+            setEmail(value);
           }}
           required
           error={showError}
-          helperText={helperText2}
+          helperText={helperText}
         />
         <Button
           variant="outlined"

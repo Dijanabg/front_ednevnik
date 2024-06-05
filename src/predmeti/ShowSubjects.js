@@ -1,4 +1,8 @@
-import { NavLink, useLoaderData, useNavigate } from "react-router-dom";
+import {
+  // NavLink,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import ShowSubject from "./ShowSubject";
 import "./ShowSubjects.css";
