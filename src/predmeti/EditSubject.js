@@ -7,7 +7,7 @@ const EditSubject = () => {
   const predmet = useLoaderData();
   const [name, setName] = useState(predmet.nazivPredmeta); // Ispravljeno ime atributa
   const [razred, setRazred] = useState(predmet.razredId); // Ispravljeno ime atributa
-  const [fond, setfond] = useState(predmet.fond); // Ispravljeno ime atributa
+  const [fond, setfond] = useState(predmet.casovaNedeljno); // Ispravljeno ime atributa
 
   const [showError, setShowError] = useState(false);
   const [helperText, setHelperText] = useState("");
